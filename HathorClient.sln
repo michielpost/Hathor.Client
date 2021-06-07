@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31229.75
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hathor", "Hathor\Hathor.csproj", "{8A857C6B-46EE-4351-817B-E2B70760DCBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hathor.Tests", "Hathor.Tests\Hathor.Tests.csproj", "{DF9BABAD-5969-4087-87F2-54044BD1435D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8A857C6B-46EE-4351-817B-E2B70760DCBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A857C6B-46EE-4351-817B-E2B70760DCBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A857C6B-46EE-4351-817B-E2B70760DCBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A857C6B-46EE-4351-817B-E2B70760DCBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF9BABAD-5969-4087-87F2-54044BD1435D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF9BABAD-5969-4087-87F2-54044BD1435D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF9BABAD-5969-4087-87F2-54044BD1435D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF9BABAD-5969-4087-87F2-54044BD1435D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {48AD76C5-07C0-4366-9696-5241046CBB10}
+	EndGlobalSection
+EndGlobal
