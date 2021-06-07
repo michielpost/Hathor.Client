@@ -9,21 +9,27 @@ namespace Hathor.Tests
     [TestClass]
     public class HathorClientTests
     {
-        IHathorApi client;
-
+        private static IHathorApi client = HathorClient.GetClient("http://localhost:8000", WALLET_ID);
         private const string WALLET_ID = "wallet1";
 
-        public HathorClientTests()
-        {
-            client = HathorClient.GetClient("http://localhost:8000", WALLET_ID);
-        }
 
-        [TestMethod]
-        public async Task Start()
+        [ClassInitialize]
+        public async static Task Start(TestContext context)
         {
             var req = new StartRequest(WALLET_ID, "default");
 
             var response = await client.Start(req);
+
+            //Assert.IsTrue(response.Success);
+
+            //Wait untill wallet is ready
+            await Task.Delay(TimeSpan.FromSeconds(2));
+        }
+
+        [ClassCleanup]
+        public async static Task Stop()
+        {
+            var response = await client.Stop();
 
             Assert.IsTrue(response.Success);
         }
@@ -95,15 +101,51 @@ namespace Hathor.Tests
         [TestMethod]
         public async Task GetAddressIndexInvalid()
         {
-            var indexResponse = await client.GetAddressIndex("0x0");
+            var response = await client.GetAddressIndex("0x0");
+            Assert.IsFalse(response.Success);
+        }
+
+        [TestMethod]
+        public async Task GetAddressInfo()
+        {
+            var response = await client.GetAddress();
+            var currentAddress = response.Address;
+
+            var indexResponse = await client.GetAddressInfo(currentAddress);
+            Assert.IsTrue(indexResponse.Success);
+
+        }
+
+        [TestMethod]
+        public async Task GetAddressInfoInvalid()
+        {
+            var indexResponse = await client.GetAddressInfo("0x0");
             Assert.IsFalse(indexResponse.Success);
+
         }
 
         [TestMethod]
         public async Task GetAddresses()
         {
-            var indexResponse = await client.GetAddresses();
-            Assert.IsTrue(indexResponse.Addresses.Any());
+            var response = await client.GetAddresses();
+            Assert.IsTrue(response.Addresses.Any());
+        }
+
+        [TestMethod]
+        public async Task GetTxHistory()
+        {
+            var response = await client.GetTxHistory();
+            Assert.IsTrue(response.Any());
+        }
+
+        [TestMethod]
+        public async Task GetTransaction()
+        {
+            var txHistory = await client.GetTxHistory();
+
+            var response = await client.GetTransaction(txHistory.Keys.First());
+            Assert.IsTrue(response.Inputs.Any());
+            Assert.IsTrue(response.Outputs.Any());
         }
     }
 }

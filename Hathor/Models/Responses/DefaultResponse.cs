@@ -12,6 +12,9 @@ namespace Hathor.Models.Responses
         [JsonProperty(PropertyName = "success")]
         public bool Success { get; set; } = true;
 
+        [JsonProperty(PropertyName = "error")]
+        public string? Error { get; set; }
+
         [JsonProperty(PropertyName = "message")]
         public string? Message { get; set; }
 
