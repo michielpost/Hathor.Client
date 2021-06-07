@@ -27,7 +27,7 @@ namespace Hathor.Models.Requests
         [Required]
         public string SeedKey { get; set; }
 
-        public StartRequest(string walletId, string seedKey, string? passphrase = null)
+        public StartRequest(string walletId, string seedKey = "default", string? passphrase = null)
         {
             WalletId = walletId;
             SeedKey = seedKey;

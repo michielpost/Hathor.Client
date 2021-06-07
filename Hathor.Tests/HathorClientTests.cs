@@ -17,7 +17,6 @@ namespace Hathor.Tests
         public async static Task Start(TestContext context)
         {
             var req = new StartRequest(WALLET_ID, "default");
-
             var response = await client.Start(req);
 
             //Assert.IsTrue(response.Success);
@@ -151,6 +150,15 @@ namespace Hathor.Tests
             var response = await client.GetTransaction(txHistory.First().TxId);
             Assert.IsTrue(response.Inputs.Any());
             Assert.IsTrue(response.Outputs.Any());
+        }
+
+        [TestMethod]
+        public async Task SendZeroTransaction()
+        {
+            var transaction = new SendTransactionSimpleRequest("0x0", 0);
+            var response = await client.SendTransaction(transaction);
+
+            Assert.IsFalse(response.Success);
         }
     }
 }

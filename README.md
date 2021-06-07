@@ -15,3 +15,36 @@ docker run -p 8000:8000 hathornetwork/hathor-wallet-headless --seed_default "YOU
 docker run -p 8000:8000 hathornetwork/hathor-wallet-headless --seed_default "work above economy captain advance bread logic paddle copper change maze tongue salon sadness cannon fish debris need make purpose usage worth vault shrug"
 ```
 The Hathor Headless Wallet API is now available on `http://localhost:8000`
+
+## Use the Hathor Client
+
+Create a new Hathor Client
+```cs
+string walletId = "my-wallet";
+IHathorApi client = HathorClient.GetClient("http://localhost:8000", walletId);
+```
+
+Start the wallet
+```cs
+//"default" refers to the seed key you used when starting the docker image
+var req = new StartRequest(walletId, "default");
+var response = await client.Start(req);
+```
+
+When the wallet is started, you can view transaction history, create new transactions etc
+```cs
+//Get balance
+var balance = await client.GetBalance();
+
+//Tx history
+var txHistory = await client.GetTxHistory();
+
+//Create a transaction
+var transaction = new SendTransactionSimpleRequest("ADDRESS", 1);
+var response = await client.SendTransaction(transaction);
+```
+
+Stop the wallet:
+```cs
+var response = await client.Stop();
+```

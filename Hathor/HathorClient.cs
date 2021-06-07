@@ -7,7 +7,7 @@ namespace Hathor
 {
     public class HathorClient
     {
-        public static IHathorApi GetClient(string baseUrl, string walletId = "default")
+        public static IHathorApi GetClient(string baseUrl, string walletId)
         {
             var hathorApi = new RestClient(baseUrl)
             {
