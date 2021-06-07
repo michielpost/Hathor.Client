@@ -68,6 +68,14 @@ namespace Hathor.Tests
         }
 
         [TestMethod]
+        public async Task GetCurrentAddress()
+        {
+            var response = await client.GetAddress();
+            var currentAddress = response.Address;
+            Assert.IsFalse(string.IsNullOrEmpty(currentAddress));
+        }
+
+        [TestMethod]
         public async Task GetAddress()
         {
             var response = await client.GetAddress();
@@ -80,9 +88,6 @@ namespace Hathor.Tests
 
             response = await client.GetAddress();
             Assert.AreNotEqual(currentAddress, response.Address);
-
-            response = await client.GetAddress(index: 0);
-            Assert.AreEqual("HJLtGyXiv2iPppgWFw9DX2Y2Fyimigh5ju", response.Address);
         }
 
         [TestMethod]
@@ -143,7 +148,7 @@ namespace Hathor.Tests
         {
             var txHistory = await client.GetTxHistory();
 
-            var response = await client.GetTransaction(txHistory.Keys.First());
+            var response = await client.GetTransaction(txHistory.First().TxId);
             Assert.IsTrue(response.Inputs.Any());
             Assert.IsTrue(response.Outputs.Any());
         }

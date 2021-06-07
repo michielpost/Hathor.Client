@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Hathor.Models.Responses
 {
-    public class TxHistoryResponse : Dictionary<string, Transaction>
+    public class TxHistoryResponse : List<Transaction>
     {
     }
 
@@ -18,6 +18,9 @@ namespace Hathor.Models.Responses
 
         [JsonProperty(PropertyName = "version")]
         public int Version { get; set; }
+
+        [JsonProperty("weight")]
+        public double Weight { get; set; }
 
         [JsonProperty(PropertyName = "timestamp")]
         public int Timestamp { get; set; }
@@ -46,6 +49,9 @@ namespace Hathor.Models.Responses
 
     public class Input
     {
+        /// <summary>
+        /// Value in cents, i.e., 123 means 1.23.
+        /// </summary>
         [JsonProperty(PropertyName = "value")]
         public int Value { get; set; }
 
@@ -70,6 +76,9 @@ namespace Hathor.Models.Responses
 
     public class Output
     {
+        /// <summary>
+        /// Value in cents, i.e., 123 means 1.23.
+        /// </summary>
         [JsonProperty(PropertyName = "value")]
         public int Value { get; set; }
 
@@ -87,5 +96,8 @@ namespace Hathor.Models.Responses
 
         [JsonProperty(PropertyName = "spent_by")]
         public string? SpentBy { get; set; }
+
+        [JsonProperty("selected_as_input")]
+        public bool SelectedAsInput { get; set; }
     }
 }

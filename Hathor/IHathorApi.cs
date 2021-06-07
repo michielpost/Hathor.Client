@@ -69,5 +69,30 @@ namespace Hathor
         [Get("wallet/transaction")]
         Task<Transaction> GetTransaction([Query]string id);
 
+        [Post("wallet/create-token")]
+        Task<DefaultResponse> CreateToken([Body] CreatTokenRequest creatTokenRequest);
+
+
+        #region Custom Tokens
+
+        [Post("wallet/simple-send-tx")]
+        Task<DefaultResponse> SendTransaction([Body] SendTransactionSimpleRequest sendTransactionRequest);
+
+        [Post("wallet/send-tx")]
+        Task<DefaultResponse> SendTransaction([Body] SendTransactionRequest sendTransactionRequest);
+
+        [Post("wallet/mint-tokens")]
+        Task<DefaultResponse> MintTokens([Body] MintTokensRequest mintTokensRequest);
+
+        [Post("wallet/melt-tokens")]
+        Task<DefaultResponse> MeltTokens([Body] MeltTokensRequest meltTokensRequest, 
+            [Query]string token, 
+            [Query]int amount, 
+            [Query("change_address")]string? ChangeAddress = null,
+            [Query("deposit_address")]string? DepositAddress = null
+            );
+
+        #endregion
+
     }
 }
