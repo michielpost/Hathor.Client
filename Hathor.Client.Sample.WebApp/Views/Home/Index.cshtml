@@ -1,0 +1,92 @@
+﻿@model IndexViewModel
+@using Hathor.Extensions
+@{
+    ViewData["Title"] = "Hathor API Client";
+}
+
+<div>
+    <h1>Hathor.Client sample website</h1>
+
+    @if (Model.IsNodeRunning.HasValue && Model.IsNodeRunning.Value)
+    {
+        <p>Connected to wallet!</p>
+
+        <p>Address: <a href="https://explorer.hathor.network/address/@Model.Address?.Address" target="_blank">@Model.Address?.Address</a></p>
+        <p>Available balance: @Model.Balance?.Available</p>
+        <p>Locked balance: @Model.Balance?.Locked</p>
+
+        @if (Model.Balance?.Available > 0)
+        {
+            @using (Html.BeginForm("CreateTransaction", "Home", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.EditorFor(x => x.TransactionModel)
+
+                <input type="submit" value="Sent HTR" id="Submit" />
+            }
+        }
+        else
+        {
+            <p>Sent some HTR to @Model.Address?.Address to test creating a new transaction.</p>
+        }
+
+
+
+        @if (Model.TxHistory?.Any() ?? false)
+        {
+            <br /><br />
+            <p>Transactions:</p>
+
+            @foreach (var tx in Model.TxHistory.OrderBy(x => x.Timestamp))
+            {
+                var sent = tx.Inputs.Where(x => Model.Addresses.Addresses.Contains(x.Decoded?.Address ?? string.Empty));
+                var received = tx.Outputs.Where(x => Model.Addresses.Addresses.Contains(x.Decoded?.Address ?? string.Empty));
+
+                <p>TxId: <a href="@Url.Action("Transaction", "Home", new { id = @tx.TxId })">@tx.TxId</a></p>
+
+                @if (sent.Any())
+                {
+                    <p>Sent: @sent.First().Value.ToHTR() HTR</p>
+                }
+
+                @if (received.Any())
+                {
+                    <p>Received: @received.First().Value.ToHTR() HTR</p>
+                }
+
+                <hr />
+
+            }
+        }
+        else
+        {
+            <p>No transactions yet.</p>
+        }
+    }
+    else if (Model.IsNodeRunning.HasValue)
+    {
+        <p>Connected to node! But wallet is not started yet.</p>
+
+        @using (Html.BeginForm("StartWallet", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <input type="submit" value="Start Wallet" id="Submit" />
+        }
+    }
+    else
+    {
+        <p>
+            Could not reach Hathor API node on http://localhost:8080
+            <br />
+            Start the Hathor Headless Wallet using docker:
+            <blockquote>
+                docker pull hathornetwork/hathor-wallet-headless <br />
+                docker run -p 8000:8000 hathornetwork/hathor-wallet-headless --seed_default "YOUR 24 SEED WORDS"
+            </blockquote>
+
+
+        </p>
+    }
+</div>

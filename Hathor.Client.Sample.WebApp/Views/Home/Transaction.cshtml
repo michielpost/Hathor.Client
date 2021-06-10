@@ -1,0 +1,30 @@
+﻿@model Hathor.Models.Responses.Transaction
+@using Hathor.Extensions
+@{
+    ViewData["Title"] = "View Transaction";
+}
+
+<div>
+    <h1>Hathor.Client sample website</h1>
+
+    <p>Transaction:  <a href="https://explorer.hathor.network/transaction/@Model.TxId" target="_blank">@Model.TxId</a></p>
+
+    Inputs:
+    @foreach (var input in Model.Inputs)
+    {
+        <p>
+            @input.Decoded?.Address | @input.Value.ToHTR()
+        </p>
+    }
+
+    <hr />
+
+    Outputs:
+    @foreach (var output in Model.Outputs)
+    {
+        <p>
+            @output.Decoded?.Address | @output.Value.ToHTR()
+        </p>
+    }
+
+</div>

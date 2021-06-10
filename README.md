@@ -17,7 +17,23 @@ docker run -p 8000:8000 hathornetwork/hathor-wallet-headless --seed_default "wor
 The Hathor Headless Wallet API is now available on `http://localhost:8000`
 
 ## Sample App
+There are two sample apps in this repository.
+
+First, install Microsoft .Net 5 SDK from https://dot.net, then run the following commands:
+```ps
+dotnet restore
+dotnet build
+```
+
 Start the included `Hathor.Client.Sample.ConsoleApp` sample app to get a quick demo of what's possible with this library.
+```ps
+dotnet run --project Hathor.Client.Sample.ConsoleApp
+```
+
+Start the included `Hathor.Client.Sample.WebApp` sample website get a visual look at the data.
+```ps
+dotnet run --project Hathor.Client.Sample.WebApp
+```
 
 ## Use the Hathor Client
 

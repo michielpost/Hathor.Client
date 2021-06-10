@@ -15,6 +15,11 @@ namespace Hathor.Client.Sample.ConsoleApp
             Console.WriteLine("This app will show you the basic usage of the Hathor.Client package.");
 
             var url = Prompt("Enter the URL to the Hathor Wallet API (e.g. http://localhost:8000):");
+            if(url == null)
+            {
+                Console.WriteLine("Enter a valid url like http://localhost:8000");
+                return;
+            }
             IHathorApi client = HathorClient.GetClient(url, WALLET_ID);
 
             Console.WriteLine("Starting Hathor Wallet...");
@@ -55,18 +60,23 @@ namespace Hathor.Client.Sample.ConsoleApp
             {
                 var sendAddress = Prompt("Enter address to send HTR to:");
                 var amount = Prompt("Enter amount (in cents, so enter 1 for 0.01 HTR) to send:");
-                int centAmount = int.Parse(amount);
-                if(centAmount > 0)
+                if (amount != null)
                 {
-                    Console.WriteLine("Sending transaction...");
-                    SendTransactionSimpleRequest sendReq = new SendTransactionSimpleRequest(sendAddress, centAmount);
-                    var txResult = await client.SendTransaction(sendReq);
+                    int centAmount = int.Parse(amount);
+                    if (centAmount > 0 && sendAddress != null)
+                    {
+                        Console.WriteLine("Sending transaction...");
+                        SendTransactionSimpleRequest sendReq = new SendTransactionSimpleRequest(sendAddress, centAmount);
+                        var txResult = await client.SendTransaction(sendReq);
 
-                    Console.WriteLine($"Success: {txResult.Success}");
-                    if(txResult.Success)
-                        Console.WriteLine($"TxId: {txResult.TxId}");
+                        Console.WriteLine($"Success: {txResult.Success}");
+                        if (txResult.Success)
+                            Console.WriteLine($"TxId: {txResult.TxId}");
+                        else
+                            Console.WriteLine($"Error: {txResult.Error}");
+                    }
                     else
-                        Console.WriteLine($"Error: {txResult.Error}");
+                        Console.WriteLine("Could not parse address or amount.");
                 }
 
             }
@@ -81,7 +91,7 @@ namespace Hathor.Client.Sample.ConsoleApp
 
         }
 
-        private static string Prompt(string msg)
+        private static string? Prompt(string msg)
         {
             Console.WriteLine(msg);
             return Console.ReadLine();
