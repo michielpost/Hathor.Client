@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31229.75
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hathor", "Hathor\Hathor.csproj", "{8A857C6B-46EE-4351-817B-E2B70760DCBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hathor.Tests", "Hathor.Tests\Hathor.Tests.csproj", "{DF9BABAD-5969-4087-87F2-54044BD1435D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hathor.Tests", "Hathor.Tests\Hathor.Tests.csproj", "{DF9BABAD-5969-4087-87F2-54044BD1435D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hathor.Client.Sample.ConsoleApp", "Hathor.Client.Sample.ConsoleApp\Hathor.Client.Sample.ConsoleApp.csproj", "{9C10C200-E301-4613-83C0-5C9D2B430855}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{DF9BABAD-5969-4087-87F2-54044BD1435D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF9BABAD-5969-4087-87F2-54044BD1435D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF9BABAD-5969-4087-87F2-54044BD1435D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C10C200-E301-4613-83C0-5C9D2B430855}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C10C200-E301-4613-83C0-5C9D2B430855}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C10C200-E301-4613-83C0-5C9D2B430855}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C10C200-E301-4613-83C0-5C9D2B430855}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -16,6 +16,9 @@ docker run -p 8000:8000 hathornetwork/hathor-wallet-headless --seed_default "wor
 ```
 The Hathor Headless Wallet API is now available on `http://localhost:8000`
 
+## Sample App
+Start the included `Hathor.Client.Sample.ConsoleApp` sample app to get a quick demo of what's possible with this library.
+
 ## Use the Hathor Client
 
 Create a new Hathor Client

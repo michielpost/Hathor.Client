@@ -76,10 +76,10 @@ namespace Hathor
         #region Custom Tokens
 
         [Post("wallet/simple-send-tx")]
-        Task<DefaultResponse> SendTransaction([Body] SendTransactionSimpleRequest sendTransactionRequest);
+        Task<SendTransactionResponse> SendTransaction([Body] SendTransactionSimpleRequest sendTransactionRequest);
 
         [Post("wallet/send-tx")]
-        Task<DefaultResponse> SendTransaction([Body] SendTransactionRequest sendTransactionRequest);
+        Task<SendTransactionResponse> SendTransaction([Body] SendTransactionRequest sendTransactionRequest);
 
         [Post("wallet/mint-tokens")]
         Task<DefaultResponse> MintTokens([Body] MintTokensRequest mintTokensRequest);

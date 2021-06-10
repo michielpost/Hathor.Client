@@ -15,8 +15,9 @@ namespace Hathor
                 JsonSerializerSettings = new JsonSerializerSettings()
                 {
                     ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                    NullValueHandling = NullValueHandling.Ignore
-                }
+                    NullValueHandling = NullValueHandling.Ignore,
+                    Error = (serializer, err) => err.ErrorContext.Handled = true
+        }
             }.For<IHathorApi>();
 
             hathorApi.WalletId = walletId;
