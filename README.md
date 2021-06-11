@@ -47,7 +47,7 @@ dotnet run --project Hathor.Client.Sample.WebApp
 Create a new Hathor Client
 ```cs
 string walletId = "my-wallet";
-IHathorApi client = HathorClient.GetClient("http://localhost:8000", walletId, "optional-api-key");
+IHathorWalletApi client = HathorClient.GetWalletClient("http://localhost:8000", walletId, "optional-api-key");
 ```
 
 Start the wallet
@@ -75,6 +75,20 @@ Check the sample apps and unit tests for more example usage.
 Stop the wallet:
 ```cs
 var response = await client.Stop();
+```
+
+## Full node support
+There is partial support to use the [Hathor full node API](https://docs.hathor.network/#)
+
+```cs
+IHathorNodeApi nodeClient = HathorClient.GetNodeClient("https://node2.mainnet.hathor.network/v1a/");
+
+//Get node version info
+var versionInfo =  await nodeClient.GetVersion();
+
+//Get balance of an address
+var balanceInfo = await nodeClient.GetBalanceForAddress("ANY HATHOR ADDRESS")
+
 ```
 
 ## Open source credits

@@ -15,7 +15,7 @@ namespace Hathor.Client.Sample.WebApp.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private const string WALLET_ID = "web-sample-wallet";
-        private IHathorApi client = HathorClient.GetClient("http://localhost:8000", WALLET_ID);
+        private IHathorWalletApi client = HathorClient.GetWalletClient("http://localhost:8000", WALLET_ID);
 
         public HomeController(ILogger<HomeController> logger)
         {

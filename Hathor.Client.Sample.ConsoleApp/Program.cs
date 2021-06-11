@@ -20,7 +20,7 @@ namespace Hathor.Client.Sample.ConsoleApp
                 Console.WriteLine("Enter a valid url like http://localhost:8000");
                 return;
             }
-            IHathorApi client = HathorClient.GetClient(url, WALLET_ID);
+            IHathorWalletApi client = HathorClient.GetWalletClient(url, WALLET_ID);
 
             Console.WriteLine("Starting Hathor Wallet...");
             var req = new StartRequest(WALLET_ID, "default");

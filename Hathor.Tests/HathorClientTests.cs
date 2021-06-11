@@ -9,7 +9,7 @@ namespace Hathor.Tests
     [TestClass]
     public class HathorClientTests
     {
-        private static IHathorApi client = HathorClient.GetClient("http://localhost:8000", WALLET_ID);
+        private static IHathorWalletApi client = HathorClient.GetWalletClient("http://localhost:8000", WALLET_ID);
         private const string WALLET_ID = "wallet1";
 
 

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Hathor
 {
-    public interface IHathorApi
+    public interface IHathorWalletApi
     {
         [Header("X-API-Key")]
         string? ApiKey { get; set; }

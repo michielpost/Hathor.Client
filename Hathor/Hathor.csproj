@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <Nullable>enable</Nullable>
     <WarningsAsErrors>nullable;CS8600;CS8601;CS8602;CS8603;CS8625;CS8613;CS8610</WarningsAsErrors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.8.20</Version>
+    <Version>0.8.21</Version>
     <Authors>Michiel Post</Authors>
     <Company />
     <Description>Client for Hathor Headless Wallet API</Description>
