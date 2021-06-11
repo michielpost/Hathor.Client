@@ -1,6 +1,10 @@
 # Hathor.Client
 
-Client for Hathor Wallet API
+C# / .NET Client for Hathor Wallet API
+
+## Install
+Install the latest version from [NuGet](https://www.nuget.org/packages/Hathor/)  
+NuGet package name: `Hathor`
 
 ## Getting Started
 
@@ -43,7 +47,7 @@ dotnet run --project Hathor.Client.Sample.WebApp
 Create a new Hathor Client
 ```cs
 string walletId = "my-wallet";
-IHathorApi client = HathorClient.GetClient("http://localhost:8000", walletId);
+IHathorApi client = HathorClient.GetClient("http://localhost:8000", walletId, "optional-api-key");
 ```
 
 Start the wallet
@@ -72,3 +76,9 @@ Stop the wallet:
 ```cs
 var response = await client.Stop();
 ```
+
+## Open source credits
+[RestEase](https://github.com/canton7/RestEase)
+
+## Acknowledgements
+Development has been made possible with a grant from [Hathor](https://hathor.network).
