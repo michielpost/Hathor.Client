@@ -13,6 +13,9 @@ docker run -p 8000:8000 hathornetwork/hathor-wallet-headless --seed_default "YOU
 
 #Example, do not use:
 docker run -p 8000:8000 hathornetwork/hathor-wallet-headless --seed_default "work above economy captain advance bread logic paddle copper change maze tongue salon sadness cannon fish debris need make purpose usage worth vault shrug"
+
+#Example with API key, do not use:
+docker run -p 8000:8000 hathornetwork/hathor-wallet-headless --api_key "MYSECRETKEY" --seed_default "work above economy captain advance bread logic paddle copper change maze tongue salon sadness cannon fish debris need make purpose usage worth vault shrug"
 ```
 The Hathor Headless Wallet API is now available on `http://localhost:8000`
 
@@ -62,6 +65,8 @@ var txHistory = await client.GetTxHistory();
 var transaction = new SendTransactionSimpleRequest("ADDRESS", 1);
 var response = await client.SendTransaction(transaction);
 ```
+
+Check the sample apps and unit tests for more example usage.
 
 Stop the wallet:
 ```cs

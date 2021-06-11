@@ -7,7 +7,7 @@ namespace Hathor
 {
     public class HathorClient
     {
-        public static IHathorApi GetClient(string baseUrl, string walletId)
+        public static IHathorApi GetClient(string baseUrl, string walletId, string? apiKey = null)
         {
             var hathorApi = new RestClient(baseUrl)
             {
@@ -21,6 +21,7 @@ namespace Hathor
             }.For<IHathorApi>();
 
             hathorApi.WalletId = walletId;
+            hathorApi.ApiKey = apiKey;
 
             return hathorApi;
         }

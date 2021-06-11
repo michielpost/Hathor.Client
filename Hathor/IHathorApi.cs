@@ -11,6 +11,9 @@ namespace Hathor
 {
     public interface IHathorApi
     {
+        [Header("X-API-Key")]
+        string? ApiKey { get; set; }
+
         [Header("x-wallet-id")]
         string WalletId { get; set; }
 
