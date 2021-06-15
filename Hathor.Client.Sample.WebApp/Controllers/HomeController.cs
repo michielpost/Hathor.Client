@@ -89,7 +89,6 @@ namespace Hathor.Client.Sample.WebApp.Controllers
 
             if (response.Success)
             {
-
                 return RedirectToAction(nameof(Transaction), new { id = response.TxId });
             }
 
