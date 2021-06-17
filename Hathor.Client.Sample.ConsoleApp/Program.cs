@@ -52,7 +52,7 @@ namespace Hathor.Client.Sample.ConsoleApp
             Console.WriteLine($"Address: {address.Address}");
             Console.WriteLine($"Balance: available: {balance.Available} | locked: {balance.Locked}");
 
-            Console.WriteLine($"Number of transactions: {txHistory.Count}");
+            Console.WriteLine($"Number of transactions: {txHistory?.Count}");
             Console.WriteLine("-------------------");
             Console.WriteLine();
 
