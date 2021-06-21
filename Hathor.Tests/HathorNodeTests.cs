@@ -39,5 +39,21 @@ namespace Hathor.Tests
 
             Assert.IsFalse(response.Success);
         }
+
+        [TestMethod]
+        public async Task ValidateValidAddress()
+        {
+            var response = await nodeClient.ValidateAddress("H7j5toHdk2zi7z8PXpeAcrB62CSpruNo8k");
+
+            Assert.IsTrue(response.Valid);
+        }
+
+        [TestMethod]
+        public async Task ValidateInvalidAddress()
+        {
+            var response = await nodeClient.ValidateAddress("0x");
+
+            Assert.IsFalse(response.Valid);
+        }
     }
 }
