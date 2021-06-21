@@ -1,6 +1,6 @@
 # Hathor.Client
 
-C# / .NET Client for Hathor Wallet API
+C# / .NET Client for [Hathor](https://hathor.network) Wallet API
 
 ## Install
 Install the latest version from [NuGet](https://www.nuget.org/packages/Hathor/)  
