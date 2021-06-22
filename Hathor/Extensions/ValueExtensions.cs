@@ -13,6 +13,11 @@ namespace Hathor.Extensions
             return Convert.ToDecimal(value) / 100;
         }
 
+        public static string ToHTRString(this int value, IFormatProvider? provider = null)
+        {
+            return value.ToHTR().ToString("F2", provider) + " HTR";
+        }
+
         public static int ToHTRCents(this decimal value)
         {
             return Convert.ToInt32(value * 100);

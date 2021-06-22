@@ -32,6 +32,19 @@ namespace Hathor.Tests
         [DataRow(100, "1.00")]
         [DataRow(1000, "10.00")]
         [DataRow(1234, "12.34")]
+        public void FromCentsToHTRString(int cents, string htr)
+        {
+            var result = cents.ToHTRString(CultureInfo.InvariantCulture);
+
+            Assert.AreEqual($"{htr} HTR", result);
+        }
+
+        [DataTestMethod]
+        [DataRow(1, "0.01")]
+        [DataRow(10, "0.10")]
+        [DataRow(100, "1.00")]
+        [DataRow(1000, "10.00")]
+        [DataRow(1234, "12.34")]
         public void FromHTRToCents(int cents, string htr)
         {
             decimal htrDecimal = Convert.ToDecimal(htr, CultureInfo.InvariantCulture);
