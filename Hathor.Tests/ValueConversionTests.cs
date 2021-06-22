@@ -29,8 +29,12 @@ namespace Hathor.Tests
         [DataTestMethod]
         [DataRow(1, "0.01")]
         [DataRow(10, "0.10")]
-        [DataRow(100, "1.00")]
-        [DataRow(1000, "10.00")]
+        [DataRow(15, "0.15")]
+        [DataRow(50, "0.50")]
+        [DataRow(100, "1")]
+        [DataRow(110, "1.10")]
+        [DataRow(115, "1.15")]
+        [DataRow(1000, "10")]
         [DataRow(1234, "12.34")]
         public void FromCentsToHTRString(int cents, string htr)
         {

@@ -15,7 +15,12 @@ namespace Hathor.Extensions
 
         public static string ToHTRString(this int value, IFormatProvider? provider = null)
         {
-            return value.ToHTR().ToString("F2", provider) + " HTR";
+            decimal d = value.ToHTR();
+
+            if (value % 100 == 0)
+                return d.ToString("F0", provider) + " HTR";
+
+            return d.ToString("F2", provider) + " HTR";
         }
 
         public static int ToHTRCents(this decimal value)
