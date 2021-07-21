@@ -61,7 +61,6 @@ namespace Hathor
         Task<AddressesResponse> GetAddresses();
 
 
-
         /// <summary>
         /// /wallet/tx-history
         /// </summary>
@@ -72,17 +71,30 @@ namespace Hathor
         [Get("wallet/transaction")]
         Task<Transaction> GetTransaction([Query]string id);
 
-        [Post("wallet/create-token")]
-        Task<DefaultResponse> CreateToken([Body] CreatTokenRequest creatTokenRequest);
-
-
-        #region Custom Tokens
-
         [Post("wallet/simple-send-tx")]
         Task<SendTransactionResponse> SendTransaction([Body] SendTransactionSimpleRequest sendTransactionRequest);
 
         [Post("wallet/send-tx")]
         Task<SendTransactionResponse> SendTransaction([Body] SendTransactionRequest sendTransactionRequest);
+
+        [Get("wallet/utxo-filter")]
+        Task<UtxoFilterResponse> UtxoFilter([Query] int? max_utxos = 255, 
+            [Query] string? token = null, 
+            [Query(Name = "filter_address")] string? filterAddress = null, 
+            [Query(Name = "amount_smaller_than")] int? amountSmallerThan = null,
+            [Query(Name = "amount_bigger_than")] int? amountBiggerThan = null,
+            [Query(Name = "maximum_amount")] int? maximumAmount = null,
+            [Query(Name = "only_available_utxos")] bool? onlyAvailableUtxos = false
+            );
+
+        [Post("wallet/utxo-consolidation")]
+        Task<UtxoConsolidationResponse> UtxoConsolidation([Body] UtxoConsolidationRequest utxoConsolidationRequest);
+
+
+        #region Custom Tokens
+
+        [Post("wallet/create-token")]
+        Task<DefaultResponse> CreateToken([Body] CreatTokenRequest creatTokenRequest);
 
         [Post("wallet/mint-tokens")]
         Task<DefaultResponse> MintTokens([Body] MintTokensRequest mintTokensRequest);
