@@ -18,6 +18,9 @@ docker run -p 8000:8000 hathornetwork/hathor-wallet-headless --seed_default "YOU
 #Example, do not use:
 docker run -p 8000:8000 hathornetwork/hathor-wallet-headless --seed_default "work above economy captain advance bread logic paddle copper change maze tongue salon sadness cannon fish debris need make purpose usage worth vault shrug"
 
+#Example for testnet, do not use:
+docker run -p 8000:8000 hathornetwork/hathor-wallet-headless --network "testnet" --server "https://node1.testnet.hathor.network/v1a/" --seed_default "work above economy captain advance bread logic paddle copper change maze tongue salon sadness cannon fish debris need make purpose usage worth vault shrug"
+
 #Example with API key, do not use:
 docker run -p 8000:8000 hathornetwork/hathor-wallet-headless --api_key "MYSECRETKEY" --seed_default "work above economy captain advance bread logic paddle copper change maze tongue salon sadness cannon fish debris need make purpose usage worth vault shrug"
 ```
