@@ -13,7 +13,7 @@ namespace Hathor.Models.Requests
         public string DestinationAddress { get; set; } = default!;
 
         [JsonProperty("max_utxos")]
-        public int MaxUtxos { get; set; }
+        public int? MaxUtxos { get; set; }
 
         [JsonProperty("token")]
         public string? Token { get; set; }

@@ -112,7 +112,7 @@ namespace Hathor.Tests
         [TestMethod]
         public async Task GetAddressInfo()
         {
-            var response = await client.GetAddress();
+            var response = await client.GetAddress(0);
             var currentAddress = response.Address;
 
             var indexResponse = await client.GetAddressInfo(currentAddress);
@@ -159,6 +159,38 @@ namespace Hathor.Tests
             var response = await client.SendTransaction(transaction);
 
             Assert.IsFalse(response.Success);
+        }
+
+        [TestMethod]
+        public async Task UtxoFilter()
+        {
+            var response = await client.GetAddress(50);
+            string address = response.Address;
+
+            var filter = await client.UtxoFilter(filterAddress: address, onlyAvailableUtxos: true);
+
+            Assert.IsNotNull(filter);
+        }
+
+        [TestMethod]
+        public async Task UtxoConsolidation()
+        {
+            var mainResponse = await client.GetAddress(0);
+            string mainAaddress = mainResponse.Address;
+
+
+            var response = await client.GetAddress(50);
+            string filterAaddress = response.Address;
+
+            var req = new UtxoConsolidationRequest()
+            {
+                FilterAddress = filterAaddress,
+                DestinationAddress = mainAaddress
+            };
+
+            var consolidation = await client.UtxoConsolidation(req);
+
+            Assert.IsNotNull(consolidation);
         }
     }
 }

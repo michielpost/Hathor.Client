@@ -12,6 +12,9 @@ namespace Hathor.Models.Responses
         [JsonProperty("success")]
         public bool Success { get; set; }
 
+        [JsonProperty("error")]
+        public string? Error { get; set; }
+
         [JsonProperty("total_utxos_consolidated")]
         public int TotalUtxosConsolidated { get; set; }
 
