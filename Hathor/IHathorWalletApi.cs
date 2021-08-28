@@ -109,5 +109,8 @@ namespace Hathor
 
         #endregion
 
+        [Post("wallet/create-nft")]
+        Task<DefaultResponse> CreateNft([Body] CreateNftRequest createNftRequest);
+
     }
 }
