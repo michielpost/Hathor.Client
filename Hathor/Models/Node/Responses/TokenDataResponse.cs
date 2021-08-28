@@ -16,9 +16,6 @@ namespace Hathor.Models.Node.Responses
         [JsonProperty(PropertyName = "symbol")]
         public string? Symbol { get; set; }
 
-        [JsonProperty(PropertyName = "data")]
-        public string? Data { get; set; }
-
         [JsonProperty(PropertyName = "total")]
         public int? Total { get; set; }
 

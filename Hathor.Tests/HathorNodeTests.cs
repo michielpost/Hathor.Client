@@ -2,6 +2,7 @@ using Hathor.Models.Requests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Hathor.Tests
@@ -59,9 +60,32 @@ namespace Hathor.Tests
         [TestMethod]
         public async Task GetTokenData()
         {
-            var response = await nodeClient.TokenData("0000000022280ea3571c3ae04155718c6d4540846b846d5a1fceb903956cc4ea");
+            var response = await nodeClient.TokenData("00000000f18cc6241c7076aa26cfc78771a191e5d615f5c06451fe06c563bbc3");
 
             Assert.IsTrue(response.Success);
         }
+
+        [TestMethod]
+        public async Task GetNFT()
+        {
+            var response = await nodeClient.GetBalanceForAddress("HRaA13M5hYcnimgB8phwpcJ9eTbTsgdPGL");
+
+            foreach (var token in response.TokensData)
+            {
+                //Get tokens
+                //var tokenData = await nodeClient.TokenData(token.Key);
+
+                //Get first transaction of token
+                //var txHistory = await nodeClient.TokenHistory(token.Key);
+
+                //Token ID is also the ID of the first transaction
+                var txData = await nodeClient.Transaction(token.Key);
+
+                byte[] data = Convert.FromBase64String(txData.Tx.Outputs.First().Script);
+                string decodedString = Encoding.ASCII.GetString(data);
+            }
+        }
+
     }
 }
+
