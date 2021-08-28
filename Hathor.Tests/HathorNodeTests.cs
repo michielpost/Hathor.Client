@@ -55,5 +55,13 @@ namespace Hathor.Tests
 
             Assert.IsFalse(response.Valid);
         }
+
+        [TestMethod]
+        public async Task GetTokenData()
+        {
+            var response = await nodeClient.TokenData("0000000022280ea3571c3ae04155718c6d4540846b846d5a1fceb903956cc4ea");
+
+            Assert.IsTrue(response.Success);
+        }
     }
 }
