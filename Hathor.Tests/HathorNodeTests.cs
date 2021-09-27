@@ -86,6 +86,15 @@ namespace Hathor.Tests
             }
         }
 
+        [TestMethod]
+        public async Task GetAddressHistory()
+        {
+            var response = await nodeClient.GetAddressHistory("HRaA13M5hYcnimgB8phwpcJ9eTbTsgdPGL");
+
+            Assert.IsTrue(response.History.Any());
+           
+        }
+
     }
 }
 

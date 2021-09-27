@@ -26,10 +26,10 @@ namespace Hathor
         Task<BalanceForAddressResponse> GetBalanceForAddress([Query] string address);
 
         [Get("thin_wallet/address_history")]
-        Task<AddressHistoryResponse> AddressHistory([Query] string[] addresses);
+        Task<AddressHistoryResponse> GetAddressHistory([Query(Name = "addresses[]")] params string[] addresses);
 
         [Get("thin_wallet/address_search")]
-        Task<AddressSearchResponse> AddressSearch([Query] string address, [Query] int count, [Query] string page, [Query] string hash);
+        Task<AddressSearchResponse> GetAddressSearch([Query] string address, [Query] int count, [Query] string page, [Query] string hash);
 
 
         [Get("thin_wallet/token")]
