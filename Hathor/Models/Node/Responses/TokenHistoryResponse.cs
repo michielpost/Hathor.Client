@@ -15,6 +15,9 @@ namespace Hathor.Models.Node.Responses
 
         [JsonProperty("address")]
         public string? Address { get; set; } = default!;
+
+        [JsonProperty("timelock")]
+        public object? Timelock { get; set; }
     }
 
     public class Input
@@ -87,6 +90,9 @@ namespace Hathor.Models.Node.Responses
 
         [JsonProperty("parents")]
         public List<string> Parents { get; set; } = new();
+
+        [JsonProperty("height")]
+        public int? Height { get; set; }
     }
 
     public class TokenHistoryResponse
