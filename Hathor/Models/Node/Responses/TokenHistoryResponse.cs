@@ -17,7 +17,7 @@ namespace Hathor.Models.Node.Responses
         public string? Address { get; set; } = default!;
 
         [JsonProperty("timelock")]
-        public object? Timelock { get; set; }
+        public long? Timelock { get; set; }
     }
 
     public class Input

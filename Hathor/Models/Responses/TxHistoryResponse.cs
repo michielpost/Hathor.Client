@@ -45,6 +45,9 @@ namespace Hathor.Models.Responses
 
         [JsonProperty(PropertyName = "address")]
         public string? Address { get; set; }
+
+        [JsonProperty("timelock")]
+        public long? Timelock { get; set; }
     }
 
     public class Input
