@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Hathor.Models.Responses
 {
-    public class BalanceResponse
+    public class BalanceResponse : DefaultResponse
     {
         [JsonProperty(PropertyName = "available")]
         public int? Available { get; set; }
