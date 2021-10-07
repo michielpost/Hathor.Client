@@ -20,5 +20,8 @@ namespace Hathor.Models.Responses
 
         [JsonProperty(PropertyName = "serverUrl")]
         public string? ServerUrl { get; set; }
+
+        [JsonProperty(PropertyName = "state")]
+        public int? State { get; set; }
     }
 }

@@ -94,13 +94,13 @@ namespace Hathor
         #region Custom Tokens
 
         [Post("wallet/create-token")]
-        Task<DefaultResponse> CreateToken([Body] CreatTokenRequest creatTokenRequest);
+        Task<CreateTokenResponse> CreateToken([Body] CreatTokenRequest creatTokenRequest);
 
         [Post("wallet/mint-tokens")]
-        Task<DefaultResponse> MintTokens([Body] MintTokensRequest mintTokensRequest);
+        Task<DefaultTokenResponse> MintTokens([Body] MintTokensRequest mintTokensRequest);
 
         [Post("wallet/melt-tokens")]
-        Task<DefaultResponse> MeltTokens([Body] MeltTokensRequest meltTokensRequest, 
+        Task<DefaultTokenResponse> MeltTokens([Body] MeltTokensRequest meltTokensRequest, 
             [Query]string token, 
             [Query]int amount, 
             [Query("change_address")]string? ChangeAddress = null,
@@ -110,7 +110,7 @@ namespace Hathor
         #endregion
 
         [Post("wallet/create-nft")]
-        Task<DefaultResponse> CreateNft([Body] CreateNftRequest createNftRequest);
+        Task<DefaultTokenResponse> CreateNft([Body] CreateNftRequest createNftRequest);
 
     }
 }

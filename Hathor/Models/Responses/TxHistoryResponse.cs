@@ -101,6 +101,6 @@ namespace Hathor.Models.Responses
         public string? SpentBy { get; set; }
 
         [JsonProperty("selected_as_input")]
-        public bool SelectedAsInput { get; set; }
+        public bool? SelectedAsInput { get; set; }
     }
 }

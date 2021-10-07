@@ -27,10 +27,6 @@ namespace Hathor.Tests
             var req = new StartRequest(WALLET_ID, seedKey: null, seed: passphrase);
             var response = await client.Start(req);
 
-            await client.Start(new StartRequest("w2", seedKey: null, seed: passphrase));
-            await client.Start(new StartRequest("w3", seedKey: null, seed: passphrase));
-            await client.Start(new StartRequest("w4", seedKey: null, seed: passphrase));
-
             //Assert.IsTrue(response.Success);
 
             //Wait untill wallet is ready

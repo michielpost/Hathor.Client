@@ -15,9 +15,6 @@ namespace Hathor.Models.Requests
         [JsonProperty("inputs")]
         public List<Input> Inputs { get; set; } = new List<Input>();
 
-        [JsonProperty("token")]
-        public Token? Token { get; set; }
-
         /// <summary>
         /// Optional address to send the change amount.
         /// </summary>
@@ -33,10 +30,14 @@ namespace Hathor.Models.Requests
         [JsonProperty("value")]
         public int Value { get; set; }
 
-        public Output(string address, int value)
+        [JsonProperty("token")]
+        public string? Token { get; set; }
+
+        public Output(string address, int value, string token)
         {
             Address = address;
             Value = value;
+            Token = token;
         }
     }
 
@@ -47,6 +48,9 @@ namespace Hathor.Models.Requests
 
         [JsonProperty("index")]
         public int Index { get; set; }
+
+        [JsonProperty("token")]
+        public string? Token { get; set; }
 
         public Input(string hash, int index)
         {
