@@ -10,7 +10,15 @@ namespace Hathor.Tests
     [TestClass]
     public class HathorNodeTests
     {
-        private static IHathorNodeApi nodeClient = HathorClient.GetNodeClient("https://node2.mainnet.hathor.network/v1a/");
+        private static IHathorNodeApi nodeClient = HathorClient.GetNodeClient("https://node.explorer.hathor.network/v1a/");
+
+        [TestMethod]
+        public async Task GetStatus()
+        {
+            var response = await nodeClient.GetStatus();
+
+            Assert.AreEqual("mainnet", response.Server.Network);
+        }
 
         [TestMethod]
         public async Task GetVersion()
@@ -23,7 +31,7 @@ namespace Hathor.Tests
         [TestMethod]
         public async Task GetBalance()
         {
-            var response = await nodeClient.GetBalanceForAddress("H7j5toHdk2zi7z8PXpeAcrB62CSpruNo8k");
+            var response = await nodeClient.GetBalanceForAddress("HHNuQhBn5jGHaZ4ze2hJHdyp854js5qZoi");
 
             Assert.IsTrue(response.Success);
             Assert.IsTrue(response.TokensData.Any());

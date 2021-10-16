@@ -13,6 +13,9 @@ namespace Hathor
         [Get("version")]
         Task<VersionResponse> GetVersion();
 
+        [Get("status")]
+        Task<StatusResponse> GetStatus();
+
         [Get("validate_address/{address}")]
         Task<ValidateAddressResponse> ValidateAddress([Path] string address);
 
