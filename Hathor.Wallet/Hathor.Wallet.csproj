@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <WarningsAsErrors>nullable;CS8600;CS8601;CS8602;CS8603;CS8625;CS8613;CS8610</WarningsAsErrors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.5.1</Version>
+    <Authors>Michiel Post</Authors>
+    <Company />
+    <Description>Client for Hathor Headless Wallet API</Description>
+    <Copyright>Michiel Post</Copyright>
+    <PackageProjectUrl>https://github.com/michielpost/Hathor.ClientC</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/michielpost/Hathor.Client</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageTags>hathor rpc cryptocurrency blockchain</PackageTags>
+  
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NBitcoin.Altcoins" Version="3.0.7" />
+  </ItemGroup>
+
+</Project>
