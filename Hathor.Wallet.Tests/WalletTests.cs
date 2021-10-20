@@ -35,10 +35,12 @@ namespace Hathor.Wallet.Tests
             var currentAddress = addressResponse.Address;
             Assert.IsFalse(string.IsNullOrEmpty(currentAddress));
 
+            var wallet = new HathorWallet(HathorNetwork.Mainnet, seed);
+
+
             for (int i = 0; i < 20; i++)
             {
-                var wallet = new HathorWallet(HathorNetwork.Mainnet, seed, i);
-                var address = wallet.GetAddress();
+                var address = wallet.GetAddress(i);
 
                 var dynamicAddress = await client.GetAddress(i);
 

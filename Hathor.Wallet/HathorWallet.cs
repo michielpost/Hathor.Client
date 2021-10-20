@@ -5,11 +5,10 @@ namespace Hathor.Wallet
 {
     public class HathorWallet
     {
-        private readonly int index;
         private readonly ExtKey masterKey;
         private readonly Network network;
 
-        public HathorWallet(HathorNetwork hathorNetwork, string seed, int index, Wordlist? wordList = null)
+        public HathorWallet(HathorNetwork hathorNetwork, string seed, Wordlist? wordList = null)
         {
             if (wordList == null)
                 wordList = Wordlist.English;
@@ -18,12 +17,13 @@ namespace Hathor.Wallet
             masterKey = mnemo.DeriveExtKey();
 
             network = HathorAddressHelper.GetNetwork(hathorNetwork);
-
-            this.index = index;
         }
 
-        public string GetAddress()
+        public string GetAddress(int index)
         {
+            if (index < 0)
+                throw new ArgumentOutOfRangeException(nameof(index), "Should be 0 or higher");
+
             ExtKey key = masterKey.Derive(new KeyPath($"m/44'/280'/0'/0/{index}"));
             var address = key.GetPublicKey().GetAddress(ScriptPubKeyType.Legacy, network);
 
