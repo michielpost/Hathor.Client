@@ -16,14 +16,12 @@ jobs:
           dotnet-version: 5.0.x
 
       - name: publish Hathor on version change
-        id: publish_nuget
         uses: brandedoutcast/publish-nuget@v2
         with:
           PROJECT_FILE_PATH: Hathor/Hathor.csproj
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
 
       - name: publish Wallet on version change
-        id: publish_nuget
         uses: brandedoutcast/publish-nuget@v2
         with:
           PROJECT_FILE_PATH: Hathor.Wallet/Hathor.Wallet.csproj
