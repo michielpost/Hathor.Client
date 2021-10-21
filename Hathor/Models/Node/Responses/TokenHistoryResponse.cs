@@ -77,7 +77,7 @@ namespace Hathor.Models.Node.Responses
         public double Weight { get; set; }
 
         [JsonProperty("timestamp")]
-        public int Timestamp { get; set; }
+        public long Timestamp { get; set; }
 
         [JsonProperty("is_voided")]
         public bool IsVoided { get; set; }

@@ -16,7 +16,7 @@ namespace Hathor.Models.Responses
         public int Nonce { get; set; }
 
         [JsonProperty("timestamp")]
-        public int Timestamp { get; set; }
+        public long Timestamp { get; set; }
 
         [JsonProperty("version")]
         public int Version { get; set; }

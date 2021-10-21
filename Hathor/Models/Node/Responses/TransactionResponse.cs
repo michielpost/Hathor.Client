@@ -28,7 +28,7 @@ namespace Hathor.Models.Node.Responses
         public string Nonce { get; set; } = default!;
 
         [JsonProperty("timestamp")]
-        public int Timestamp { get; set; }
+        public long Timestamp { get; set; }
 
         [JsonProperty("version")]
         public int Version { get; set; }

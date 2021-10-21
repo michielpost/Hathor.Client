@@ -23,7 +23,7 @@ namespace Hathor.Models.Responses
         public double Weight { get; set; }
 
         [JsonProperty(PropertyName = "timestamp")]
-        public int Timestamp { get; set; }
+        public long Timestamp { get; set; }
 
         [JsonProperty(PropertyName = "is_voided")]
         public bool IsVoided { get; set; }
