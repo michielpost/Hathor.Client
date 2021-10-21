@@ -31,6 +31,10 @@ namespace Hathor
         [Get("thin_wallet/address_history")]
         Task<AddressHistoryResponse> GetAddressHistory([Query(Name = "addresses[]")] params string[] addresses);
 
+
+        [Get("thin_wallet/address_history?paginate=true")]
+        Task<AddressHistoryResponse> GetAddressHistoryPaginate([Query(Name = "addresses[]")] params string[] addresses);
+
         [Get("thin_wallet/address_search")]
         Task<AddressSearchResponse> GetAddressSearch([Query] string address, [Query] int count, [Query] string page, [Query] string hash);
 

@@ -100,7 +100,34 @@ namespace Hathor.Tests
             var response = await nodeClient.GetAddressHistory("HRaA13M5hYcnimgB8phwpcJ9eTbTsgdPGL");
 
             Assert.IsTrue(response.History.Any());
+            Assert.IsNull(response.HasMore);
            
+        }
+
+        [TestMethod]
+        public async Task GetAddressHistoryPaginate()
+        {
+            var response = await nodeClient.GetAddressHistoryPaginate("HRaA13M5hYcnimgB8phwpcJ9eTbTsgdPGL");
+
+            Assert.IsTrue(response.History.Any());
+            Assert.IsNotNull(response.HasMore);
+
+        }
+
+        [TestMethod]
+        public async Task GetAddressHistoryMultiple()
+        {
+            var response1 = await nodeClient.GetAddressHistory("HRaA13M5hYcnimgB8phwpcJ9eTbTsgdPGL");
+            var response2 = await nodeClient.GetAddressHistory("HS3LsvXzBU5yWPPUY6pjgMKXDZWGa3MeFp");
+
+            int total = response1.History.Count + response2.History.Count;
+
+            var responseMerged = await nodeClient.GetAddressHistory("HRaA13M5hYcnimgB8phwpcJ9eTbTsgdPGL", "HS3LsvXzBU5yWPPUY6pjgMKXDZWGa3MeFp");
+
+            Assert.IsTrue(response1.History.Any());
+            Assert.IsTrue(response2.History.Any());
+            Assert.AreEqual(total, responseMerged.History.Count());
+
         }
 
     }

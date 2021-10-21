@@ -13,6 +13,15 @@ namespace Hathor.Models.Node.Responses
     {
         [JsonProperty("history")]
         public List<History> History { get; set; } = new List<History>();
+
+        [JsonProperty("has_more")]
+        public bool? HasMore { get; set; }
+
+        [JsonProperty("first_hash")]
+        public string? FirstHash { get; set; }
+
+        [JsonProperty("first_address")]
+        public string? FirstAddress { get; set; }
     }
 
     public class History
