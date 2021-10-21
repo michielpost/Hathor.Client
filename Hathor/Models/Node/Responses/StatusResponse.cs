@@ -40,10 +40,10 @@ namespace Hathor.Models.Node.Responses
     public class NodeSyncTimestamp
     {
         [JsonProperty("latest_timestamp")]
-        public int? LatestTimestamp { get; set; }
+        public long? LatestTimestamp { get; set; }
 
         [JsonProperty("synced_timestamp")]
-        public int? SyncedTimestamp { get; set; }
+        public long? SyncedTimestamp { get; set; }
     }
 
     public class Plugins
