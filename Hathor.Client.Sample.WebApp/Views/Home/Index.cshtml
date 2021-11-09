@@ -2,6 +2,10 @@
 @using Hathor.Extensions
 @{
     ViewData["Title"] = "Hathor API Client";
+    if(Model == null)
+    {
+        return;
+    }
 }
 
 <div>

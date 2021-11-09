@@ -2,6 +2,10 @@
 @using Hathor.Extensions
 @{
     ViewData["Title"] = "View Transaction";
+    if(Model == null)
+    {
+        return;
+    }
 }
 
 <div>
