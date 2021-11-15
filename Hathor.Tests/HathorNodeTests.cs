@@ -1,3 +1,4 @@
+using Hathor.Extensions;
 using Hathor.Models.Requests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -91,7 +92,22 @@ namespace Hathor.Tests
 
                 byte[] data = Convert.FromBase64String(txData.Tx.Outputs.First().Script);
                 string decodedString = Encoding.ASCII.GetString(data);
+
+                var url = ScriptDataHelper.GetDataUrl(decodedString);
             }
+        }
+
+        [TestMethod]
+        public async Task GetNFTUrl()
+        {
+            var txData = await nodeClient.Transaction("00000000a0ae3dc5ec12be3cb8192f9b5e55552ea8d244c98358edac313b09e1");
+
+            byte[] data = Convert.FromBase64String(txData.Tx.Outputs.First().Script);
+            string decodedString = Encoding.ASCII.GetString(data);
+
+            var url = ScriptDataHelper.GetDataUrl(decodedString);
+
+            Assert.IsNotNull(url);
         }
 
         [TestMethod]
