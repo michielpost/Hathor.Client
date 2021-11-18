@@ -37,7 +37,7 @@ namespace Hathor.Models.Requests
         /// Optional address to send the change amount.
         /// </summary>
         [JsonProperty("change_address")]
-        public string? ChangeAaddress { get; set; }
+        public string? ChangeAddress { get; set; }
 
         /// <summary>
         /// If should create mint authority for the created NFT. Default is false

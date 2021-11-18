@@ -23,7 +23,7 @@ namespace Hathor.Models.Responses
     public class TransactionResponse
     {
         [JsonProperty("hash")]
-        public new string? TxId { get; set; }
+        public string? TxId { get; set; }
 
         [JsonProperty("nonce")]
         public int Nonce { get; set; }

@@ -31,7 +31,7 @@ namespace Hathor.Models.Requests
         /// Optional address to send the change amount.
         /// </summary>
         [JsonProperty("change_address")]
-        public string? ChangeAaddress { get; set; }
+        public string? ChangeAddress { get; set; }
 
         public CreatTokenRequest(string name, string symbol, int amount)
         {
