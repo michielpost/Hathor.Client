@@ -21,16 +21,23 @@ namespace Hathor.Models.Requests
         public string? Seed { get; set; }
 
         /// <summary>
+        /// Passphrase of the wallet that will be created.
+        /// </summary>
+        [JsonProperty(PropertyName = "passphrase")]
+        public string? Passphrase { get; set; }
+
+        /// <summary>
         /// Key of the corresponding seed in the config file to create the wallet.
         /// </summary>
         [JsonProperty(PropertyName = "seedKey")]
         public string? SeedKey { get; set; }
 
-        public StartRequest(string walletId, string? seedKey = "default", string? seed = null)
+        public StartRequest(string walletId, string? seedKey = "default", string? seed = null, string? passphrase = null)
         {
             WalletId = walletId;
             SeedKey = seedKey;
             Seed = seed;
+            Passphrase = passphrase;
         }
 
     }
