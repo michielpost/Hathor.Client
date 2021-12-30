@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace Hathor
 {
+    /// <summary>
+    /// Hathor Node API
+    /// https://docs.hathor.network/
+    /// </summary>
     public interface IHathorNodeApi
     {
         [Get("version")]

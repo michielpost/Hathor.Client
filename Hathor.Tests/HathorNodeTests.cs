@@ -69,9 +69,11 @@ namespace Hathor.Tests
         [TestMethod]
         public async Task GetTokenData()
         {
-            var response = await nodeClient.TokenData("00000000f18cc6241c7076aa26cfc78771a191e5d615f5c06451fe06c563bbc3");
+            var response = await nodeClient.TokenData("00000000d4a32bdfee6a3b0b46cd488379c9cf059f4d636ec1550f57d9351f01");
 
             Assert.IsTrue(response.Success);
+            Assert.IsTrue(response.CanMint);
+            Assert.IsTrue(response.CanMelt);
         }
 
         [TestMethod]
