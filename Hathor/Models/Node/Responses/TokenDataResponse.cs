@@ -17,7 +17,7 @@ namespace Hathor.Models.Node.Responses
         public string? Symbol { get; set; }
 
         [JsonProperty(PropertyName = "total")]
-        public int? Total { get; set; }
+        public long? Total { get; set; }
 
         [JsonProperty(PropertyName = "transactions_count")]
         public int? TransactionsCount { get; set; }

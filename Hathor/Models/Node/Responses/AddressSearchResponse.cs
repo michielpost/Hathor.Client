@@ -18,7 +18,7 @@ namespace Hathor.Models.Node.Responses
         public bool HasMore { get; set; }
 
         [JsonProperty("total")]
-        public int Total { get; set; }
+        public long Total { get; set; }
     }
 
 }

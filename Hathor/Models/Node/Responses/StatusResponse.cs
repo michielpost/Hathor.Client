@@ -91,10 +91,10 @@ namespace Hathor.Models.Node.Responses
     public class Dag
     {
         [JsonProperty("first_timestamp")]
-        public int? FirstTimestamp { get; set; }
+        public long? FirstTimestamp { get; set; }
 
         [JsonProperty("latest_timestamp")]
-        public int? LatestTimestamp { get; set; }
+        public long? LatestTimestamp { get; set; }
     }
 
     public class StatusResponse
