@@ -100,9 +100,14 @@ namespace Hathor.Tests
         }
 
         [TestMethod]
-        public async Task GetNFTUrl()
+        [DataRow("00000000a0ae3dc5ec12be3cb8192f9b5e55552ea8d244c98358edac313b09e1")]
+        [DataRow("0000000066ddf8af375cd00e9d121ebcfd939b5f822c94b0e245df16b0de2a1f")]
+        [DataRow("000005bd6142ffa45bce048cc9a22f2500cc5b76482c24a0a3d359e34505d0c9")]
+        [DataRow("000009914c546a3b44c9978ae7c9c9dfaa44a3f229774423a10807c7d51e1dea")]
+        [DataRow("00000000f4ad005dbaa8a6fe6e4a99e45ad636314b4ef13abce2dece61603c6b")]
+        public async Task GetNFTUrl(string tokenId)
         {
-            var txData = await nodeClient.Transaction("00000000a0ae3dc5ec12be3cb8192f9b5e55552ea8d244c98358edac313b09e1");
+            var txData = await nodeClient.Transaction(tokenId);
 
             byte[] data = Convert.FromBase64String(txData.Tx.Outputs.First().Script);
             string decodedString = Encoding.ASCII.GetString(data);
@@ -110,6 +115,10 @@ namespace Hathor.Tests
             var url = ScriptDataHelper.GetDataUrl(decodedString);
 
             Assert.IsNotNull(url);
+
+            var mintAddress = txData.Tx.Outputs.Where(x => x.TokenData == 1).First().Decoded.Address;
+            Assert.IsNotNull(mintAddress);
+
         }
 
         [TestMethod]
