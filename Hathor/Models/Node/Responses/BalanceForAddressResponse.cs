@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,8 @@ namespace Hathor.Models.Node.Responses
         public Dictionary<string, TokenData> TokensData { get; set; } = new Dictionary<string, TokenData>();
     }
 
-    public class TokenData
+    [DebuggerDisplay("{Symbol} | {Balance} | {Name}")]
+    public record TokenData
     {
         [JsonProperty("received")]
         public int Received { get; set; }

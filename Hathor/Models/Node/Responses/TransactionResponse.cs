@@ -1,12 +1,14 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Hathor.Models.Node.Responses
 {
+    [DebuggerDisplay("{Symbol} | {Name}")]
     public class Token
     {
         [JsonProperty("uid")]
@@ -19,6 +21,7 @@ namespace Hathor.Models.Node.Responses
         public string Symbol { get; set; } = default!;
     }
 
+    [DebuggerDisplay("{Hash}")]
     public class Tx
     {
         [JsonProperty("hash")]
@@ -58,6 +61,7 @@ namespace Hathor.Models.Node.Responses
         public string Raw { get; set; } = default!;
     }
 
+    [DebuggerDisplay("{Hash}")]
     public class Meta
     {
         [JsonProperty("hash")]

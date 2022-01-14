@@ -1,5 +1,10 @@
-﻿using NBitcoin;
+﻿using Hathor.Extensions;
+using Hathor.Models.Node.Responses;
+using NBitcoin;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Hathor.Wallet
 {
@@ -7,8 +12,9 @@ namespace Hathor.Wallet
     {
         private readonly ExtKey masterKey;
         private readonly Network network;
+        private readonly IHathorNodeApi hathorNodeApi;
 
-        public HathorWallet(HathorNetwork hathorNetwork, string seed, Wordlist? wordList = null)
+        public HathorWallet(IHathorNodeApi hathorNodeApi, HathorNetwork hathorNetwork, string seed, Wordlist? wordList = null)
         {
             if (wordList == null)
                 wordList = Wordlist.English;
@@ -17,6 +23,7 @@ namespace Hathor.Wallet
             masterKey = mnemo.DeriveExtKey();
 
             network = HathorAddressHelper.GetNetwork(hathorNetwork);
+            this.hathorNodeApi = hathorNodeApi;
         }
 
         public string GetAddress(int index)
@@ -29,5 +36,18 @@ namespace Hathor.Wallet
 
             return address.ToString();
         }
+
+        public Task<AddressHistoryResponse> GetTxHistory(params int[] indexes)
+        {
+            var addresses = indexes.Select(x => GetAddress(x)).ToArray();
+            return hathorNodeApi.GetAddressHistory(addresses);
+        }
+
+        public Task<BalanceForAddressResponse> CalculateBalanceForAddress(int index)
+        {
+            var address = GetAddress(index);
+            return hathorNodeApi.CalculateBalanceForAddress(address);
+        }
+
     }
 }

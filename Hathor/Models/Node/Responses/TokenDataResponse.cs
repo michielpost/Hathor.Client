@@ -2,12 +2,14 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Hathor.Models.Node.Responses
 {
+    [DebuggerDisplay("{Symbol} | {Total} | {Name}")]
     public class TokenDataResponse : DefaultResponse
     {
         [JsonProperty(PropertyName = "name")]

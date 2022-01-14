@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 namespace Hathor.Models.Node.Responses
 {
     // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
+    [DebuggerDisplay("{Type} | {Address} | {Timelock}")]
     public class Decoded
     {
         [JsonProperty("type")]
@@ -20,6 +22,7 @@ namespace Hathor.Models.Node.Responses
         public long? Timelock { get; set; }
     }
 
+    [DebuggerDisplay("{Value} | {Token}")]
     public class Input
     {
         [JsonProperty("value")]
@@ -44,6 +47,7 @@ namespace Hathor.Models.Node.Responses
         public int Index { get; set; }
     }
 
+    [DebuggerDisplay("{Value} | {Token}")]
     public class Output
     {
         [JsonProperty("value")]
@@ -65,6 +69,7 @@ namespace Hathor.Models.Node.Responses
         public string? SpentBy { get; set; }
     }
 
+    [DebuggerDisplay("{TxId}")]
     public class Transaction
     {
         [JsonProperty("tx_id")]

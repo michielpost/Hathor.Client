@@ -13,6 +13,7 @@ namespace Hathor.Wallet.Tests
     public class WalletTests
     {
         private static IHathorWalletApi client = HathorClient.GetWalletClient("http://localhost:8082", WALLET_ID, apiKey: "YOUR_KEY");
+        private static IHathorNodeApi nodeclient = HathorClient.GetNodeClient("http://localhost:8082");
         private const string WALLET_ID = "wallet1";
 
 
@@ -22,7 +23,7 @@ namespace Hathor.Wallet.Tests
         {
             string seed = "auto rack method remain level craft unable erode sense canal awful pass pause evidence accuse host crew main surprise top debris link muffin safe";
 
-            var wallet = new HathorWallet(HathorNetwork.Testnet, seed);
+            var wallet = new HathorWallet(nodeclient, HathorNetwork.Testnet, seed);
 
             Assert.AreEqual("WjMHb1GujSYGsENjoMYWiL5nF77Whh2SAw", wallet.GetAddress(0));
             Assert.AreEqual("WZaj6S7CKFkhzB4ZbwVDurQAVkQP8dfoxD", wallet.GetAddress(1));
@@ -55,7 +56,7 @@ namespace Hathor.Wallet.Tests
         {
             string seed = "auto rack method remain level craft unable erode sense canal awful pass pause evidence accuse host crew main surprise top debris link muffin safe";
 
-            var wallet = new HathorWallet(HathorNetwork.Mainnet, seed);
+            var wallet = new HathorWallet(nodeclient, HathorNetwork.Mainnet, seed);
 
             Assert.AreEqual("HTCP6RSQJVFMsvmszWYziC6pUTcPDqU8cr", wallet.GetAddress(0));
             Assert.AreEqual("HHRpbrGgtJTnzsTho6VhuiRCj6uFem3jDr", wallet.GetAddress(1));
@@ -102,7 +103,7 @@ namespace Hathor.Wallet.Tests
             var currentAddress = addressResponse.Address;
             Assert.IsFalse(string.IsNullOrEmpty(currentAddress));
 
-            var wallet = new HathorWallet(HathorNetwork.Mainnet, seed);
+            var wallet = new HathorWallet(nodeclient, HathorNetwork.Mainnet, seed);
 
 
             for (int i = 0; i < 20; i++)

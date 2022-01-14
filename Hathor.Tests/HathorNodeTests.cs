@@ -43,6 +43,43 @@ namespace Hathor.Tests
         }
 
         [TestMethod]
+        //[DataRow("HKpnvfpzPKgy4akYRtDrwdwTfx4Ky6EUda")]
+        //[DataRow("HBPGgtpEWg9669JwUPXSGsdceMjKyoxM8H")]
+        //[DataRow("HHNuQhBn5jGHaZ4ze2hJHdyp854js5qZoi")]
+        //[DataRow("HPUCw6kFDNSVrk21n5MFrMP7w9a6WzkK8s")]
+        [DataRow("HBBHnNYNS8mYJ3aFZ9kYGZmAzDh7FoZfnv")]
+
+        public async Task CalculateBalance(string address)
+        {
+            var response = await nodeClient.CalculateBalanceForAddress(address);
+            var responseActual = await nodeClient.GetBalanceForAddress(address);
+
+            Assert.AreEqual(responseActual.TotalTransactions, response.TotalTransactions);
+
+            foreach(var v in responseActual.TokensData)
+            {
+                var key = v.Key;
+                
+                var actualValue = v.Value;
+                var calculatedValue = response.TokensData[key];
+
+                Assert.AreEqual(actualValue.Balance, calculatedValue.Balance);
+            }
+
+            foreach (var v in response.TokensData)
+            {
+                var key = v.Key;
+
+                var calculatedValue = v.Value;
+                var actualValue = responseActual.TokensData[key];
+
+                Assert.AreEqual(actualValue.Balance, calculatedValue.Balance);
+            }
+
+        }
+
+
+        [TestMethod]
         public async Task GetBalanceForInvalidAddress()
         {
             var response = await nodeClient.GetBalanceForAddress("0x0");
