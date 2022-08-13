@@ -112,5 +112,8 @@ namespace Hathor
         [Post("wallet/create-nft")]
         Task<DefaultTokenResponse> CreateNft([Body] CreateNftRequest createNftRequest);
 
+        [Get("wallet/tx-confirmation-blocks")]
+        Task<TxConfirmationBlocksResponse> GetTxConfirmationBlocks([Query(Name ="id")] string txId);
+
     }
 }
