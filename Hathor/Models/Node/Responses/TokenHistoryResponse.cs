@@ -43,6 +43,9 @@ namespace Hathor.Models.Node.Responses
         [JsonProperty("tx_id")]
         public string? TxId { get; set; }
 
+        [JsonProperty("txId")]
+        public string? TxIdProposed { get; set; }
+
         [JsonProperty("index")]
         public int Index { get; set; }
     }

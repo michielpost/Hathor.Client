@@ -1,3 +1,4 @@
+using Hathor.Models.Node.Responses;
 using Hathor.Models.Requests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -25,13 +26,13 @@ namespace Hathor.Tests
             await Task.Delay(TimeSpan.FromSeconds(2));
         }
 
-        [ClassCleanup]
-        public async static Task Stop()
-        {
-            var response = await client.Stop();
+        //[ClassCleanup]
+        //public async static Task Stop()
+        //{
+        //    var response = await client.Stop();
 
-            Assert.IsTrue(response.Success);
-        }
+        //    Assert.IsTrue(response.Success);
+        //}
 
         [TestMethod]
         public async Task GetStatus()
@@ -153,6 +154,16 @@ namespace Hathor.Tests
         }
 
         [TestMethod]
+        public async Task GetTxConfirmationBlocks()
+        {
+            var txHistory = await client.GetTxHistory();
+
+            var confirmationsResponse = await client.GetTxConfirmationBlocks(txHistory.First().TxId);
+            Assert.IsTrue(confirmationsResponse.Success);
+
+        }
+
+        [TestMethod]
         public async Task SendZeroTransaction()
         {
             var transaction = new SendTransactionSimpleRequest("0x0", 0);
@@ -191,6 +202,26 @@ namespace Hathor.Tests
             var consolidation = await client.UtxoConsolidation(req);
 
             Assert.IsNotNull(consolidation);
+        }
+
+        [TestMethod]
+        public async Task CreateToken()
+        {
+            var transaction = new CreateTokenRequest("Testnet Token", "T01", 10);
+            var response = await client.CreateToken(transaction);
+
+            Assert.IsTrue(response.Success);
+            Assert.IsNotNull(response.ConfigurationString);
+
+        }
+
+        [TestMethod]
+        public async Task GetConfigurationString()
+        {
+            var response = await client.GetConfigurationString("007ca0773f7a9998bbca4c089ba836b6f75edac95cf0ad957a3d01f970ce31cc");
+
+            Assert.IsTrue(response.Success);
+            Assert.IsNotNull(response.ConfigurationString);
         }
     }
 }

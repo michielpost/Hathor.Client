@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Hathor.Models.Requests
 {
-    public class CreatTokenRequest
+    public class CreateTokenRequest
     {
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -33,7 +33,7 @@ namespace Hathor.Models.Requests
         [JsonProperty("change_address")]
         public string? ChangeAddress { get; set; }
 
-        public CreatTokenRequest(string name, string symbol, int amount)
+        public CreateTokenRequest(string name, string symbol, int amount)
         {
             Name = name;
             Symbol = symbol;

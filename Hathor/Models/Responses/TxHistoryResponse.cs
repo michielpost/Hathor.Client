@@ -75,6 +75,12 @@ namespace Hathor.Models.Responses
 
         [JsonProperty(PropertyName = "index")]
         public int Index { get; set; }
+
+        [JsonProperty("hash")]
+        public string? Hash { get; set; }
+
+        [JsonProperty("data")]
+        public Data? Data { get; set; }
     }
 
     public class Output
@@ -88,8 +94,8 @@ namespace Hathor.Models.Responses
         [JsonProperty(PropertyName = "token_data")]
         public int TokenData { get; set; }
 
-        [JsonProperty(PropertyName = "script")]
-        public string? Script { get; set; }
+        [JsonProperty("script")]
+        public Script? Script { get; set; }
 
         [JsonProperty(PropertyName = "decoded")]
         public Decoded? Decoded { get; set; }
@@ -102,5 +108,23 @@ namespace Hathor.Models.Responses
 
         [JsonProperty("selected_as_input")]
         public bool? SelectedAsInput { get; set; }
+    }
+
+    public class Data
+    {
+        [JsonProperty("type")]
+        public string? Type { get; set; }
+
+        [JsonProperty("data")]
+        public List<int>? DataList { get; set; }
+    }
+
+    public class Script
+    {
+        [JsonProperty("type")]
+        public string? Type { get; set; }
+
+        [JsonProperty("data")]
+        public List<int>? Data { get; set; }
     }
 }

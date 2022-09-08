@@ -13,7 +13,7 @@ namespace Hathor.Models.Requests
         public List<Output> Outputs { get; set; } = new List<Output>();
 
         [JsonProperty("inputs")]
-        public List<Input> Inputs { get; set; } = new List<Input>();
+        public List<Input>? Inputs { get; set; }
 
         /// <summary>
         /// Optional address to send the change amount.

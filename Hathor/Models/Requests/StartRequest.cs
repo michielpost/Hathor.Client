@@ -32,12 +32,19 @@ namespace Hathor.Models.Requests
         [JsonProperty(PropertyName = "seedKey")]
         public string? SeedKey { get; set; }
 
-        public StartRequest(string walletId, string? seedKey = "default", string? seed = null, string? passphrase = null)
+        /// <summary>
+        /// Start as a multisig wallet. Requires multisig configuration.
+        /// </summary>
+        [JsonProperty(PropertyName = "multisig")]
+        public bool? MultiSig { get; set; }
+
+        public StartRequest(string walletId, string? seedKey = "default", string? seed = null, string? passphrase = null, bool? multiSig = null)
         {
             WalletId = walletId;
             SeedKey = seedKey;
             Seed = seed;
             Passphrase = passphrase;
+            MultiSig = multiSig;
         }
 
     }

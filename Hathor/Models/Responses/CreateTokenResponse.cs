@@ -40,10 +40,13 @@ namespace Hathor.Models.Responses
     public class CreateTokenResponse : DefaultTokenResponse
     {
 
-        [JsonProperty("token_name")]
-        public string TokenName { get; set; } = default!;
+        [JsonProperty("name")]
+        public string Name { get; set; } = default!;
 
-        [JsonProperty("token_symbol")]
-        public string TokenSymbol { get; set; } = default!;
+        [JsonProperty("symbol")]
+        public string Symbol { get; set; } = default!;
+
+        [JsonProperty("configurationString")]
+        public string ConfigurationString { get; set; } = default!;
     }
 }

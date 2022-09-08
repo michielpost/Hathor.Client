@@ -94,7 +94,10 @@ namespace Hathor
         #region Custom Tokens
 
         [Post("wallet/create-token")]
-        Task<CreateTokenResponse> CreateToken([Body] CreatTokenRequest creatTokenRequest);
+        Task<CreateTokenResponse> CreateToken([Body] CreateTokenRequest creatTokenRequest);
+
+        [Get("configuration-string")]
+        Task<ConfigurationStringResponse> GetConfigurationString([Query] string token);
 
         [Post("wallet/mint-tokens")]
         Task<DefaultTokenResponse> MintTokens([Body] MintTokensRequest mintTokensRequest);
@@ -114,6 +117,26 @@ namespace Hathor
 
         [Get("wallet/tx-confirmation-blocks")]
         Task<TxConfirmationBlocksResponse> GetTxConfirmationBlocks([Query(Name ="id")] string txId);
+
+
+        [Post("multisig-pubkey")]
+        Task<GetMultiSigPubKeyResponse> GetMultiSigPubKey([Body] GetMultiSigPubKeyRequest getMultiSigPubKeyRequest);
+
+        [Post("wallet/p2sh/tx-proposal")]
+        Task<SendTransactionProposalResponse> SendTransactionProposal([Body] SendTransactionRequest sendTransactionRequest);
+
+        [Post("wallet/decode")]
+        Task<DecodeResponse> Decode([Body] EncodedTxRequest decodeRequest);
+
+        [Post("wallet/p2sh/tx-proposal/get-my-signatures")]
+        Task<SignaturesResponse> GetMySignaturesForTxProposal([Body] EncodedTxRequest encodedTxRequest);
+
+        [Post("wallet/p2sh/tx-proposal/sign")]
+        Task<SignaturesResponse> SignTxProposal([Body] EncodedTxWithSignaturesRequest encodedTxWithSignaturesRequest);
+
+        [Post("wallet/p2sh/tx-proposal/sign-and-push")]
+        Task<SendTransactionResponse> SignAndPushMultiSig([Body] EncodedTxWithSignaturesRequest encodedTxWithSignaturesRequest);
+
 
     }
 }
