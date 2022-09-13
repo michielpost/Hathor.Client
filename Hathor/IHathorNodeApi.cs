@@ -29,6 +29,9 @@ namespace Hathor
         [Get("decode_tx")]
         Task<TransactionResponse> DecodeTransaction([Query] string hex_tx);
 
+        [Get("transaction_acc_weight")]
+        Task<TransactionAccWeightResponse> GetTransactionAccWeight([Query] string id);
+
         [Get("thin_wallet/address_balance")]
         Task<BalanceForAddressResponse> GetBalanceForAddress([Query] string address);
 

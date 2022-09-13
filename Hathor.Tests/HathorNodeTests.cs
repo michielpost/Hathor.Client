@@ -159,6 +159,14 @@ namespace Hathor.Tests
         }
 
         [TestMethod]
+        public async Task TransactionAccWeight()
+        {
+            var response = await nodeClient.GetTransactionAccWeight("00000000a0ae3dc5ec12be3cb8192f9b5e55552ea8d244c98358edac313b09e1");
+
+            Assert.IsTrue(response.Success);
+        }
+
+        [TestMethod]
         public async Task GetAddressHistory()
         {
             var response = await nodeClient.GetAddressHistory("HRaA13M5hYcnimgB8phwpcJ9eTbTsgdPGL");
