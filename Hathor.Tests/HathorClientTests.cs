@@ -223,5 +223,40 @@ namespace Hathor.Tests
             Assert.IsTrue(response.Success);
             Assert.IsNotNull(response.ConfigurationString);
         }
+
+
+        [TestMethod]
+        public async Task CreateTokenMintAndMeltTest()
+        {
+            var addressResponse = await client.GetAddress(0);
+            var currentAddress = addressResponse.Address;
+
+            var transaction = new CreateTokenRequest("Testnet MM Token", "TMM", 10);
+            transaction.Address = currentAddress;
+            var response = await client.CreateToken(transaction);
+
+            Assert.IsTrue(response.Success);
+            Assert.IsNotNull(response.ConfigurationString);
+
+            var tokenId = response.Hash;
+
+            //Check the balance:
+            var balance = await client.GetBalance(tokenId);
+            Assert.AreEqual(10, balance.Available);
+
+            //Mint some more tokens
+            var mintResponse = await client.MintTokens(new MintTokensRequest(tokenId, currentAddress, 10));
+            Assert.IsTrue(mintResponse.Success);
+
+            balance = await client.GetBalance(tokenId);
+            Assert.AreEqual(20, balance.Available);
+
+            //Melt some tokens
+            var meltResponse = await client.MeltTokens(new MeltTokensRequest(tokenId, 20));
+            Assert.IsTrue(meltResponse.Success);
+
+            balance = await client.GetBalance(tokenId);
+            Assert.AreEqual(0, balance.Available);
+        }
     }
 }

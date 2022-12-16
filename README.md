@@ -29,7 +29,7 @@ The Hathor Headless Wallet API is now available on `http://localhost:8000`
 ## Sample App
 There are two sample apps in this repository.
 
-First, install Microsoft .Net 5 SDK from https://dot.net, then run the following commands:
+First, install Microsoft .Net 7 SDK from https://dot.net, then run the following commands:
 ```ps
 dotnet restore
 dotnet build

@@ -103,12 +103,7 @@ namespace Hathor
         Task<DefaultTokenResponse> MintTokens([Body] MintTokensRequest mintTokensRequest);
 
         [Post("wallet/melt-tokens")]
-        Task<DefaultTokenResponse> MeltTokens([Body] MeltTokensRequest meltTokensRequest, 
-            [Query]string token, 
-            [Query]int amount, 
-            [Query("change_address")]string? ChangeAddress = null,
-            [Query("deposit_address")]string? DepositAddress = null
-            );
+        Task<DefaultTokenResponse> MeltTokens([Body] MeltTokensRequest meltTokensRequest);
 
         #endregion
 
