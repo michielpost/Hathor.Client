@@ -83,6 +83,9 @@ var response = await client.Stop();
 ### Multi Sig
 View the [MULTISIG.md](MULTISIG.md) documentation to use the Multi Sig APIs from the Headless Wallet.
 
+### Atomic Swap
+View the [ATOMICSWAP.md](ATOMICSWAP.md) documentation to use the Atomic Swap APIs from the Headless Wallet.
+
 ## Full node support
 There is partial support to use the [Hathor full node API](https://docs.hathor.network/#)
 

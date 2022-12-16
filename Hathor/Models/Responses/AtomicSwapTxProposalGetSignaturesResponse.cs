@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace Hathor.Models.Responses
 {
-    public class SendTransactionProposalResponse : DefaultResponse
+    public class AtomicSwapTxProposalGetSignaturesResponse : DefaultResponse
     {
-        [JsonProperty(PropertyName = "txHex")]
-        public string? TxHex { get; set; }
-
+        [JsonProperty(PropertyName = "signatures")]
+        public string? Signatures { get; set; }
     }
 }

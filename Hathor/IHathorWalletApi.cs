@@ -113,25 +113,46 @@ namespace Hathor
         [Get("wallet/tx-confirmation-blocks")]
         Task<TxConfirmationBlocksResponse> GetTxConfirmationBlocks([Query(Name ="id")] string txId);
 
+        [Post("wallet/decode")]
+        Task<DecodeResponse> Decode([Body] DecodeRequest decodeRequest);
+
 
         [Post("multisig-pubkey")]
-        Task<GetMultiSigPubKeyResponse> GetMultiSigPubKey([Body] GetMultiSigPubKeyRequest getMultiSigPubKeyRequest);
+        Task<GetMultiSigPubKeyResponse> MultiSigGetPubKey([Body] GetMultiSigPubKeyRequest getMultiSigPubKeyRequest);
 
         [Post("wallet/p2sh/tx-proposal")]
-        Task<SendTransactionProposalResponse> SendTransactionProposal([Body] SendTransactionRequest sendTransactionRequest);
-
-        [Post("wallet/decode")]
-        Task<DecodeResponse> Decode([Body] EncodedTxRequest decodeRequest);
+        Task<MultiSigSendTransactionProposalResponse> MultiSigSendTransactionProposal([Body] SendTransactionRequest sendTransactionRequest);
 
         [Post("wallet/p2sh/tx-proposal/get-my-signatures")]
-        Task<SignaturesResponse> GetMySignaturesForTxProposal([Body] EncodedTxRequest encodedTxRequest);
+        Task<SignaturesResponse> MultiSigGetMySignaturesForTxProposal([Body] EncodedTxRequest encodedTxRequest);
 
         [Post("wallet/p2sh/tx-proposal/sign")]
-        Task<SignaturesResponse> SignTxProposal([Body] EncodedTxWithSignaturesRequest encodedTxWithSignaturesRequest);
+        Task<SignaturesResponse> MultiSigSignTxProposal([Body] EncodedTxWithSignaturesRequest encodedTxWithSignaturesRequest);
 
         [Post("wallet/p2sh/tx-proposal/sign-and-push")]
-        Task<SendTransactionResponse> SignAndPushMultiSig([Body] EncodedTxWithSignaturesRequest encodedTxWithSignaturesRequest);
+        Task<SendTransactionResponse> MultiSigSignAndPush([Body] EncodedTxWithSignaturesRequest encodedTxWithSignaturesRequest);
 
+
+        [Post("wallet/atomic-swap/tx-proposal")]
+        Task<AtomicSwapTxProposalResponse> AtomicSwapCreateTxProposal([Body] AtomicSwapPartialTransactionRequest partialTransactionRequest);
+
+        [Post("wallet/atomic-swap/tx-proposal/get-my-signatures")]
+        Task<AtomicSwapTxProposalGetSignaturesResponse> AtomicSwapGetSignaturesForTxProposal([Body] AtomicSwapPartialTxRequest atomicSwapPartialTxRequest);
+
+        [Post("wallet/atomic-swap/tx-proposal/sign")]
+        Task<AtomicSwapSignTxProposalResponse> AtomicSwapSignTxProposal([Body] AtomicSwapSignRequest atomicSwapSignRequest);
+
+        [Post("wallet/atomic-swap/tx-proposal/sign-and-push")]
+        Task<DefaultTokenResponse> AtomicSwapSignAndPush([Body] AtomicSwapSignRequest atomicSwapSignRequest);
+
+        [Post("wallet/atomic-swap/tx-proposal/unlock")]
+        Task<DefaultResponse> AtomicSwapUnlock([Body] AtomicSwapPartialTxRequest partialTxRequest);
+
+        [Get("wallet/atomic-swap/tx-proposal/get-locked-utxos")]
+        Task<AtomicSwapGetLockedUtxosResponse> AtomicSwapGetLockedUtxos();
+
+        [Post("wallet/atomic-swap/tx-proposal/get-input-data")]
+        Task<AtomicSwapTxProposalGetSignaturesResponse> AtomicSwapGetInputData([Body] AtomicSwapGetInputDataRequest getInputDataRequest);
 
     }
 }

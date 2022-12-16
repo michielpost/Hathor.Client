@@ -13,7 +13,7 @@ Example usage can be found in [HathorMultiSigTests.cs](Hathor.Tests/HathorMultiS
 ```cs
 IHathorWalletApi client = HathorClient.GetWalletClient("http://localhost:8000", "WALLET_SEED_KEY");
 
-var xpubkey = await client.GetMultiSigPubKey(new GetMultiSigPubKeyRequest("WALLET_SEED_KEY"));
+var xpubkey = await client. MultiSigGetPubKey(new GetMultiSigPubKeyRequest("WALLET_SEED_KEY"));
             
 ```
 
@@ -36,7 +36,7 @@ SendTransactionRequest transaction = new SendTransactionRequest()
     }
 };
 
-var response = await client.SendTransactionProposal(transaction);
+var response = await client. MultiSigSendTransactionProposal(transaction);
 
 var txHex = response.TxHex;
 ```
@@ -44,17 +44,17 @@ var txHex = response.TxHex;
 ## Check the MultiSig Transaction
 The proposal hex can be checked before signing it.
 ```cs
-var decoded = await client.Decode(new EncodedTxRequest(txHex));
+var decoded = await client.Decode(new DecodeRequest() { TxHex = txHex});
 ```
 
 ## Get Participant Signatures
 When you trust the hex you received, you can sign it.
 ```cs
-var signature = await clientMultiSig1.GetMySignaturesForTxProposal(new EncodedTxRequest(txHex));
+var signature = await clientMultiSig1. MultiSigGetMySignaturesForTxProposal(new EncodedTxRequest(txHex));
 ```
 
 ## Send the MultiSig Transaction
 When you collected enough signatures from the MultiSig participants, you can push the transaction to the network.
 ```cs
-var response = await clientMultiSig1.SignAndPushMultiSig(new EncodedTxWithSignaturesRequest(txHex, new System.Collections.Generic.List<string>() { signature1, signature2 }));
+var response = await clientMultiSig1. MultiSigSignAndPush(new EncodedTxWithSignaturesRequest(txHex, new System.Collections.Generic.List<string>() { signature1, signature2 }));
 ```

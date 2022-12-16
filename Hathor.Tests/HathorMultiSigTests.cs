@@ -54,10 +54,10 @@ namespace Hathor.Tests
         [TestMethod]
         public async Task GetMultiSigPubKeys()
         {
-            var xpubkey1 = await clientMultiSig1.GetMultiSigPubKey(new GetMultiSigPubKeyRequest("multisig1"));
-            var xpubkey2 = await clientMultiSig1.GetMultiSigPubKey(new GetMultiSigPubKeyRequest("multisig2"));
-            var xpubkey3 = await clientMultiSig1.GetMultiSigPubKey(new GetMultiSigPubKeyRequest("multisig3"));
-            var xpubkey4 = await clientMultiSig1.GetMultiSigPubKey(new GetMultiSigPubKeyRequest("multisig4"));
+            var xpubkey1 = await clientMultiSig1.MultiSigGetPubKey(new GetMultiSigPubKeyRequest("multisig1"));
+            var xpubkey2 = await clientMultiSig1.MultiSigGetPubKey(new GetMultiSigPubKeyRequest("multisig2"));
+            var xpubkey3 = await clientMultiSig1.MultiSigGetPubKey(new GetMultiSigPubKeyRequest("multisig3"));
+            var xpubkey4 = await clientMultiSig1.MultiSigGetPubKey(new GetMultiSigPubKeyRequest("multisig4"));
 
             Assert.IsTrue(xpubkey1.Success);
             Assert.IsTrue(xpubkey2.Success);
@@ -103,12 +103,12 @@ namespace Hathor.Tests
         [TestMethod]
         public async Task GetProposal_For_Transaction_And_Decode_Signature()
         {
-            var response = await clientMultiSig1.SendTransactionProposal(transaction);
+            var response = await clientMultiSig1.MultiSigSendTransactionProposal(transaction);
 
             Assert.IsTrue(response.Success);
             Assert.IsNotNull(response.TxHex);
 
-            var decoded = await clientMultiSig1.Decode(new EncodedTxRequest(response.TxHex));
+            var decoded = await clientMultiSig1.Decode(new DecodeRequest() { TxHex = response.TxHex });
 
             Assert.IsNotNull(decoded);
             Assert.IsTrue(decoded.Success);
@@ -121,10 +121,10 @@ namespace Hathor.Tests
         [TestMethod]
         public async Task GetSignatures_And_SendTransaction()
         {
-            var proposal = await clientMultiSig1.SendTransactionProposal(transaction);
+            var proposal = await clientMultiSig1.MultiSigSendTransactionProposal(transaction);
 
-            var signature1 = await clientMultiSig1.GetMySignaturesForTxProposal(new EncodedTxRequest(proposal.TxHex));
-            var signature2 = await clientMultiSig2.GetMySignaturesForTxProposal(new EncodedTxRequest(proposal.TxHex));
+            var signature1 = await clientMultiSig1.MultiSigGetMySignaturesForTxProposal(new EncodedTxRequest(proposal.TxHex));
+            var signature2 = await clientMultiSig2.MultiSigGetMySignaturesForTxProposal(new EncodedTxRequest(proposal.TxHex));
 
             Assert.IsNotNull(signature1);
             Assert.IsTrue(signature1.Success);
@@ -132,8 +132,8 @@ namespace Hathor.Tests
             Assert.IsNotNull(signature2);
             Assert.IsTrue(signature2.Success);
 
-            var sign = await clientMultiSig1.SignTxProposal(new EncodedTxWithSignaturesRequest(proposal.TxHex, new List<string> { signature1.Signatures, signature2.Signatures }));
-            var multisigResponse = await clientMultiSig1.SignAndPushMultiSig(new EncodedTxWithSignaturesRequest(proposal.TxHex, new System.Collections.Generic.List<string>() { signature1.Signatures, signature2.Signatures }));
+            var sign = await clientMultiSig1.MultiSigSignTxProposal(new EncodedTxWithSignaturesRequest(proposal.TxHex, new List<string> { signature1.Signatures, signature2.Signatures }));
+            var multisigResponse = await clientMultiSig1.MultiSigSignAndPush(new EncodedTxWithSignaturesRequest(proposal.TxHex, new System.Collections.Generic.List<string>() { signature1.Signatures, signature2.Signatures }));
 
             Assert.IsNotNull(multisigResponse);
             Assert.IsTrue(multisigResponse.Success);

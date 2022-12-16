@@ -16,7 +16,7 @@ namespace Hathor.Tests
     {
         private static IHathorNodeApi nodeClient = HathorClient.GetNodeClient("https://node1.testnet.hathor.network/v1a/");
 
-        private static IHathorWalletApi client = HathorClient.GetWalletClient("http://localhost:8080", WALLET_ID, apiKey: "YOUR_KEY");
+        private static IHathorWalletApi client = HathorClient.GetWalletClient("http://localhost:8000", WALLET_ID, apiKey: "YOUR_KEY");
         private const string WALLET_ID = "wallet1";
 
 
