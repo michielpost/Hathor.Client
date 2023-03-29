@@ -75,7 +75,7 @@ namespace Hathor.Tests
 
 
         [TestMethod]
-        public async Task MultiSigTest()
+        public async Task AtomicSwapTest()
         {
             //Check if there is HTR to create custom tokens
             var aliceHtr = await clientAlice.GetBalance();
