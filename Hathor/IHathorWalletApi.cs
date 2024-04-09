@@ -20,6 +20,9 @@ namespace Hathor
         [Post("start")]
         Task<DefaultResponse> Start([Body]StartRequest startRequest);
 
+        [Get("health")]
+        Task<HealthResponse> GetHealth([Query]string? wallet_ids = null, [Query] bool? include_fullnode = null, [Query] bool? include_tx_mining = null);
+
         [Post("wallet/stop")]
         Task<DefaultResponse> Stop();
 

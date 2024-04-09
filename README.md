@@ -105,3 +105,6 @@ var balanceInfo = await nodeClient.GetBalanceForAddress("ANY HATHOR ADDRESS")
 
 ## Acknowledgements
 Development has been made possible with a grant from [Hathor](https://hathor.network).
+
+## Hathor API Reference
+https://docs.hathor.network/references/headless-wallet/http-api/
